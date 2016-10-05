@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<!-- Bootstrap 3.3.6 -->
+  	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  	<!-- Font Awesome -->
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  	<!-- DataTables -->
+  	<link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
+  	<!-- Theme style -->
+  	<link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  	<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  	<link rel="stylesheet" href="dist/css/mycss.css">
+
+</head>
+<body>
+	<header id="header">
+		<nav class="navbar navbar-static-top" id="color-navbar" role="navigation">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="login.html"><b>Quản lý lịch</b></a>
+				</div>
+		
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse navbar-ex1-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="login.html">Đăng nhập <i class="fa fa-sign-in"></i></a></li>
+						<li><a href="register.html">Đăng ký <i class="fa fa-sign-out"></i></a></li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div>
+		</nav>
+	</header><!-- /header -->
+	<div class="container" id="content">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-success">
+					<div class="panel-heading"><i class="fa fa-unlock-alt"></i> Đăng Ký</div>
+					<div class="panel-body">
+						<form action="" method="POST" role="form">
+							<label>Tên đăng nhập</label>
+			                <div class="input-group">
+			                  	<input type="text" class="form-control" placeholder="Nhập Username">
+			                  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+			                </div>
+			                <label>Mật khẩu</label>
+			                <div class="input-group">
+			                  	<input type="password" class="form-control" placeholder="Nhập mật khẩu">
+			                  	<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+			                </div>
+			                <label>Nhập lại mật khẩu</label>
+			                <div class="input-group">
+			                  	<input type="password" class="form-control" placeholder="Nhắc lại mật khẩu">
+			                  	<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+			                </div>
+			                <label>Giới tính</label>
+			                <div class="radio">
+			                	<label class="col-md-4">
+							    	<input type="radio" name="optionsRadios" checked> Nam
+							  	</label>
+							  	<label>
+							    	<input type="radio" name="optionsRadios"> Nữ
+							  	</label>
+			                </div>
+			                <label>Tên đầy đủ</label>
+			                <div class="input-group">
+			                  	<input type="text" class="form-control" placeholder="Nhập tên đầy đủ của bạn">
+			                  	<span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+			                </div>
+			                <label>Email</label>
+			                <div class="input-group">
+			                  	<input type="email" class="form-control" placeholder="Nhập email của bạn">
+			                  	<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+			                </div>
+			                <label>Số điện thoại</label>
+			                <div class="input-group">
+			                  	<input type="text" class="form-control" placeholder="Nhập số điện thoại của bạn">
+			                  	<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+			                </div>
+			                <br>
+		                	<input type="checkbox" name="" value=""> Tôi đồng ý với <a href="#">Điều khoản</a>
+		                	<button type="submit" class="btn btn-primary" style="float:right">Đăng ký <i class="fa fa-unlock-alt"></i></button>
+		              	</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+	<!-- Bootstrap 3.3.6 -->
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
