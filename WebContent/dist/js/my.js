@@ -55,21 +55,23 @@ $(function () {
           backgroundColor: "#f56954", //red
           borderColor: "#f56954", //red
 
-          url: 'detail.html'
+          url: 'detail-event.jsp'
         },
         {
           title: 'Học Anh Văn',
           start: new Date(y, m, d - 5),
           end: new Date(y, m, d - 2),
           backgroundColor: "#f39c12", //yellow
-          borderColor: "#f39c12" //yellow
+          borderColor: "#f39c12", //yellow
+          url: 'detail-event.jsp'
         },
         {
           title: 'Học Giao Tiếp',
           start: new Date(y, m, d, 10, 30),
           allDay: false,
           backgroundColor: "#0073b7", //Blue
-          borderColor: "#0073b7" //Blue
+          borderColor: "#0073b7",//Blue
+          url: 'detail-event.jsp'
         },
         {
           title: 'Tham gia hội thảo',
@@ -77,7 +79,8 @@ $(function () {
           end: new Date(y, m, d, 18, 0),
           allDay: false,
           backgroundColor: "#00c0ef", //Info (aqua)
-          borderColor: "#00c0ef" //Info (aqua)
+          borderColor: "#00c0ef", //Info (aqua)
+          url: 'detail-event.jsp'
         },
         {
           title: 'Sinh Nhật',
@@ -85,13 +88,14 @@ $(function () {
           end: new Date(y, m, d + 1, 22, 0),
           allDay: false,
           backgroundColor: "#00a65a", //Success (green)
-          borderColor: "#00a65a" //Success (green)
+          borderColor: "#00a65a", //Success (green)
+          url: 'detail-event.jsp'
         },
         {
           title: 'Học Anh Văn',
           start: new Date(y, m, 28),
           end: new Date(y, m, 29),
-          url: 'detail.html',
+          url: 'detail-event.jsp',
           backgroundColor: "#3c8dbc", //Primary (light-blue)
           borderColor: "#3c8dbc" //Primary (light-blue)
         }

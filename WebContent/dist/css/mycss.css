@@ -4,12 +4,44 @@ body {
 #color-navbar{
 	background: #3c8dbc;
 }
-#header .container a b{
+.container a{
 	color: #fff;
 }
-#header .container ul li a{
+.container ul li a{
 	color: #fff;
 }
-#header .container ul li a:hover{
+.container ul li a:hover{
 	color: red;
+}
+.container .navbar-header .navbar-toggle span{
+	color: #fff;
+}
+#helpBlock2{
+	color: red;
+}
+div#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;}
+.navbar-brand {
+  padding: 0px;
+  margin-top: -7%;
+}
+
+.add-event{
+	margin: 0;
+}
+.modal-content{
+	-webkit-border-radius: 5px !important;
+    -moz-border-radius: 5px !important;
+    border-radius: 5px !important;
+}
+.navbar-brand>h4>img{
+	
+  height: 50px;
+  width: 50px;
+}
+#image img{
+	height: 50px;
+  	width: 50px;
+  	margin-top: 50%;
+  	top: 0;
+  	bottom: 0;
 }

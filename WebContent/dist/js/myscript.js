@@ -1,5 +1,5 @@
 var $imageupload = $('.imageupload');
-$imageupload.imageupload();
+$imageupload.imageupload(); 
 
 $('#imageupload-disable').on('click', function() {
     $imageupload.imageupload('disable');
