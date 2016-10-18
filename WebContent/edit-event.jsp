@@ -8,7 +8,6 @@
   	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   	<!-- Font Awesome -->
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  	<!-- Ionicons -->
   	<!-- fullCalendar 2.2.5-->
   	<link rel="stylesheet" href="plugins/fullcalendar/fullcalendar.min.css">
   	<link rel="stylesheet" href="plugins/fullcalendar/fullcalendar.print.css" media="print">
@@ -18,7 +17,7 @@
   	<link href="dist/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
   	<link rel="stylesheet" type="text/css" href="dist/css/mycss.css">
 </head>
-<body class="hold-transition skin-green sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 		<jsp:include page="page-user/header.jsp"></jsp:include>
 		
@@ -84,7 +83,7 @@
 	                      <div class="input-group">
 	                        <input type="text" class="form-control" value="Thanh An, Tấn Hiển">
 	                        <span class="input-group-btn">
-	                          <button class="btn btn-primary" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+	                          <button class="btn btn-primary" type="button"><img src="dist/img/add.png" width="20px"></button>
 	                        </span>
 	                      </div><!-- /input-group -->
 	                    </div>
@@ -179,23 +178,25 @@
 	    </div><!-- /.modal-dialog -->
 	  </div><!-- /.modal -->
 	  <!-- ./wrapper -->
-	<!-- jQuery 2.2.3 -->
+  <!-- jQuery 2.2.3 -->
   <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
   <!-- Bootstrap 3.3.6 -->
   <script src="bootstrap/js/bootstrap.min.js"></script>
   <!-- jQuery UI 1.11.4 -->
   <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="dist/js/app.min.j"></script>
+  <script src="dist/js/app.min.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="dist/js/demo.js"></script>
   <!-- fullCalendar 2.2.5 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
   <script src="plugins/fullcalendar/fullcalendar.min.js"></script>
   <script src="dist/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-  <script src="dist/js/myscript.js"></script>
+
   <script src="dist/js/my.js"></script>
-  <script src="dist/js/datetime.js"></script>
-  <script src="dist/js/angular.min.js"></script>
+  <!-- Page specific script -->
+  <script type="text/javascript" src="dist/js/datetime.js"></script>
+  <script type="text/javascript" src="dist/js/app/app.js"></script>
+  <script type="text/javascript" src="dist/js/angular.min.js"></script>
 </body>
 </html>
