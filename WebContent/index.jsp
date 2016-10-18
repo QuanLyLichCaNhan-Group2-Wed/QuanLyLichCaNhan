@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="dist/css/mycss.css">
     <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
 </head>
-<body class="hold-transition skin-green">
+<body class="hold-transition skin-blue">
 	<header class="main-header">
         <!-- Logo -->
         <a href="index.html" class="logo">

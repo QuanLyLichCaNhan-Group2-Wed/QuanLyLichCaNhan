@@ -17,7 +17,7 @@
   	<link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   	<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
 </head>
-<body class="hold-transition skin-green sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 		<jsp:include page="page-admin/header.jsp"></jsp:include>
 		

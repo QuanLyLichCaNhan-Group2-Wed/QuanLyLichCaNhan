@@ -18,7 +18,7 @@
   	<link href="dist/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
   	<link rel="stylesheet" type="text/css" href="dist/css/mycss.css">
 </head>
-<body class="hold-transition skin-green sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 		<jsp:include page="page-user/header.jsp"></jsp:include>
 		

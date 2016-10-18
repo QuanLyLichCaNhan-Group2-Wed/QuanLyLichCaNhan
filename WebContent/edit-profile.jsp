@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="dist/css/bootstrap-imageupload.css">
 </head>
-<body class="hold-transition skin-green sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 		<jsp:include page="page-user/header.jsp"></jsp:include>
 		
