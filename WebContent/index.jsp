@@ -58,17 +58,17 @@
                      <form action="" method="POST" role="form">
                         <label>Tên đăng nhập</label>
                         <div class="input-group">
-                           <input type="text" class="form-control" placeholder="Enter UserName">
+                           <input type="text" class="form-control" placeholder="Enter UserName" name="username">
                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         </div>
                         <label>Mật khẩu</label>
                         <div class="input-group">
-                           <input type="password" class="form-control" placeholder="Enter Password">
+                           <input type="password" class="form-control" placeholder="Enter Password" name=password>
                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         </div>
                         <br>
                         <input type="checkbox" name="" value=""> Nhớ mất khẩu
-                        <a href="home.jsp" type="submit" class="btn btn-primary" style="float:right">Đăng Nhập <i class="fa fa-sign-in"></i></a>
+                        <a href="home.jsp" type="submit" class="btn btn-primary" value="login" style="float:right">Đăng Nhập <i class="fa fa-sign-in"></i></a>
                         <br><br>
                         </form>
                   </div>
@@ -127,7 +127,7 @@
                               <span id="helpBlock2" class="help-block" ng-show="frmDangKy.phone.$error.required">Vui lòng nhập số điện thoại của bạn</span>
                          </div>
                          <br>
-                        <input type="checkbox" name="" value=""> Tôi đồng ý với <a href="#">Điều khoản</a>
+                        <input type="checkbox" name="" value=""> Tôi đồng ý với <a href="#" style="color:blue">Điều khoản</a>
                         <button type="submit" class="btn btn-primary" ng-disabled="frmDangKy.$invalid" style="float:right">Đăng ký <i class="fa fa-unlock-alt"></i></button>
                      </form>
                   </div>
