@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page language="java" import = "connect.*,java.util.*" session="true" %>
+    <%@ page import="java.sql.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,6 +20,27 @@
     <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css"> 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+	<% if(session.getAttribute("username")==null || session.getAttribute("username")=="") {
+		response.sendRedirect("index.jsp");
+	}else{
+	%>
+	<% String username=session.getAttribute("username").toString();
+	Connect connect = new Connect();
+	ResultSet rst = null;
+	String sql1 = "select * from account where username='"+username+"'";
+	int role;
+	try {
+		rst = connect.GetData(sql1);
+		while(rst.next()){ 
+			role=rst.getInt("role");
+			if(role==0)
+				response.sendRedirect("home.jsp");
+		}
+	}
+	catch(Exception e){ }
+	
+	%>
+	
 	<div class="wrapper">
 		<jsp:include page="page-admin/header.jsp"></jsp:include>
 		
@@ -31,29 +54,49 @@
 	        <div class="row">
 	          <div class="col-md-6 col-md-offset-3">
 	          <div class="panel panel-primary">
+	          				<%
+		               		Connect conn = new Connect();
+		               		String id = request.getParameter("id");
+			        		ResultSet rs = null;
+			        		String sql = "select * from account where id = '"+id+"'";
+			        		try {
+			        			rs = conn.GetData(sql);
+			        			rs.next();
+			        		%>
 	            <div class="panel-heading"><i class="fa fa-user" aria-hidden="true"></i> Thông tin người dùng</div>
 	            <div class="panel-body">
 	                <img class="profile-user-img img-responsive img-circle" src="dist/img/male-member.png" alt="User profile picture">
-	                <h3 class="profile-username text-center">thientq</h3>
+	                <h3 class="profile-username text-center"><%=rs.getString("fullname") %></h3>
 	                <p class="text-muted text-center">Người dùng</p>
 	                <div class="box box-primary">
 	                  <div class="box-body">
 	                    <strong><i class="fa fa-book margin-r-5"></i> Họ tên: </strong>
-	                    <p class="text-muted">Trần Quốc Thiện</p>
+	                    <p class="text-muted"><%=rs.getString("fullname") %></p>
 	                    <hr>
 	                    <strong><i class="fa fa-transgender margin-r-5"></i> Giới tính: </strong>
-	                    <p class="text-muted">Nam</p>
+	                    <p class="text-muted">
+	                    	<%if(rs.getInt("gender")==0){ %>
+	                    		Nữ
+	                    	<%}else{ %>
+	                    		Nam
+	                    	<%} %>
+	                    </p>
 	                    <hr>
 	                    <strong><i class="glyphicon glyphicon-envelope margin-r-5"></i> Email:</strong>
-	                    <p class="text-muted">tranquocthien.spkt@gmail.com</p>
+	                    <p class="text-muted"><%=rs.getString("email") %></p>
 	                    <hr>
 	                    <strong><i class="glyphicon glyphicon-earphone margin-r-5"></i> Số điện thoại</strong>
-	                    <p class="text-muted">01658990216</p>
+	                    <p class="text-muted"><%=rs.getString("phone") %></p>
 	                    
 	                  </div>
 	                </div>
-	                <a href="edit-profile.jsp" type="button" class="btn btn-primary"><i class="fa fa-pencil fa-fw"></i> Edit</a>
+	                <a href="admin-edit.jsp?id=<%=rs.getInt("id") %>" type="button" class="btn btn-primary"><i class="fa fa-pencil fa-fw"></i> Edit</a>
 	                <!-- /.box-body -->
+	                <% 
+			        	}catch(Exception e){
+			        		
+			        	}
+			        %>
 	            </div>
 	          </div>
 	        </div>
@@ -65,6 +108,9 @@
 		
 		<jsp:include page="page-user/footer.jsp"></jsp:include>
 	</div>
+	<%
+	}
+	%>
 	<!-- jQuery 2.2.3 -->
 	<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
 	<!-- Bootstrap 3.3.6 -->

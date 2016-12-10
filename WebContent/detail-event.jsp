@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="java.sql.*"%>
+<%@ page language="java" import = "connect.*,java.util.*" session="true" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,6 +17,10 @@
   	<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+	<% if(session.getAttribute("username")==null || session.getAttribute("username")=="") {
+		response.sendRedirect("index.jsp");
+	}else{
+	%>
 	<div class="wrapper">
 		<jsp:include page="page-user/header.jsp"></jsp:include>
 		
@@ -30,7 +36,15 @@
 	          <li class="active">Thông tin cá nhân</li>
 	        </ol>
 	      </section>
-	
+			<%
+		               		Connect conn = new Connect();
+		               		String id = request.getParameter("id");
+			        		ResultSet rs = null;
+			        		String sql = "select * from event where id = '"+id+"'";
+			        		try {
+			        			rs = conn.GetData(sql);
+			        			if(rs.next()){
+			        		%>
 	      <!-- Main content -->
 	      <section class="content">
 	
@@ -42,29 +56,33 @@
 	                <div class="box box-primary">
 	                  <div class="box-body">
 	                    <strong><i class="fa fa-info margin-r-5"></i> Sự kiện </strong>
-	                    <p class="text-muted">Học Anh Văn</p>
+	                    <p class="text-muted"><%=rs.getString("title") %></p>
 	                    <hr>
 	                    <strong><i class="fa fa-building margin-r-5"></i> Địa điểm</strong>
-	                    <p class="text-muted">Sư Phạm Kỹ Thuật</p>
+	                    <p class="text-muted"><%=rs.getString("address") %></p>
 	                    <hr>
 	                    <strong><i class="fa fa-clock-o margin-r-5"></i> Thời gian diễn ra</strong>
-	                    <p class="text-muted">7AM - 11AM</p>
-	                    <hr>
-	                    <strong><i class="fa fa-users margin-r-5"></i> Bạn Bè</strong>
-	                    <p class="text-muted"><span class="label label-success">Đăng Khoa</span>
-	                    <span class="label label-danger">Thanh An</span></p>
+	                    <p class="text-muted">
+	                    	<%=rs.getDate("start")%>
+	                    	 đến <%=rs.getDate("end") %></p>
 	                    <hr>
 	                    <strong><i class="fa fa-folder margin-r-5"></i> Nội dung</strong>
-	                    <p class="text-muted">Đi học anh văn</p>
+	                    <p class="text-muted"><%=rs.getString("description") %></p>
 	                    
 	                  </div>
 	                </div>
-	                <a href="edit-event.jsp" type="button" class="btn btn-primary"><i class="fa fa-pencil fa-fw"></i> Edit</a>
+	                <a href="edit-event.jsp?id=<%=rs.getInt("id") %>" type="button" class="btn btn-primary"><i class="fa fa-pencil fa-fw"></i> Edit</a>
+	                <a href="DeleteEventSerlvet?id=<%=rs.getInt("id") %>" type="button" class="btn btn-danger"><i class="fa fa-pencil fa-fw"></i> Delete</a>
 	                <!-- /.box-body -->
 	            </div>
 	          </div>
 	        </div>
 	        </div>
+	        <%}
+			        		}catch(Exception e){
+			        			
+			        		}
+	        %>
 	        <!-- /.row -->
 	      </section>
 	    </div>
@@ -72,6 +90,9 @@
 		
 		<jsp:include page="page-user/footer.jsp"></jsp:include>
 	</div>
+	<%
+	}
+	%>
 	<!-- jQuery 2.2.3 -->
   	<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
   	<!-- Bootstrap 3.3.6 -->
