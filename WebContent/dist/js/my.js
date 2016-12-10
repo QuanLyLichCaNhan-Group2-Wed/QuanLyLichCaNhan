@@ -1,163 +1,197 @@
 // Calendar
-$(function () {
+$(function() {
 
-    /* initialize the external events
-     -----------------------------------------------------------------*/
-    function ini_events(ele) {
-      ele.each(function () {
+	/* initialize the external events
+	 -----------------------------------------------------------------*/
+	function ini_events(ele) {
+		ele.each(function() {
 
-        // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
-        // it doesn't need to have a start or end
-        var eventObject = {
-          title: $.trim($(this).text()) // use the element's text as the event title
-        };
+			// create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+			// it doesn't need to have a start or end
+			var eventObject = {
+				title : $.trim($(this).text())
+			// use the element's text as the event title
+			};
 
-        // store the Event Object in the DOM element so we can get to it later
-        $(this).data('eventObject', eventObject);
+			// store the Event Object in the DOM element so we can get to it later
+			$(this).data('eventObject', eventObject);
 
-        // make the event draggable using jQuery UI
-        $(this).draggable({
-          zIndex: 1070,
-          revert: true, // will cause the event to go back to its
-          revertDuration: 0  //  original position after the drag
-        });
+			// make the event draggable using jQuery UI
+			$(this).draggable({
+				zIndex : 1070,
+				revert : true, // will cause the event to go back to its
+				revertDuration : 0
+			//  original position after the drag
+			});
 
-      });
-    }
+		});
+	}
 
-    ini_events($('#external-events div.external-event'));
+	ini_events($('#external-events div.external-event'));
 
-    /* initialize the calendar
-     -----------------------------------------------------------------*/
-    //Date for the calendar events (dummy data)
-    var date = new Date();
-    var d = date.getDate(),
-        m = date.getMonth(),
-        y = date.getFullYear();
-    $('#calendar').fullCalendar({
-      header: {
-        left: 'prev,next today, add',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay'
-      },
-      buttonText: {
-        today: 'today',
-        add: 'Add',
-        month: 'month',
-        week: 'week',
-        day: 'day'
-      },
-      //Random default events
-      events: [
-        {
-          title: 'Tập Gym',
-          start: new Date(y, m, 1),
-          backgroundColor: "#f56954", //red
-          borderColor: "#f56954", //red
+	
+	/* initialize the calendar
+	 -----------------------------------------------------------------*/
+	//Date for the calendar events (dummy data)
+	var date = new Date();
+	var d = date.getDate(), m = date.getMonth(), y = date.getFullYear();
+	$('#calendar')
+			.fullCalendar(
+					{
+						header : {
+							left : 'prev,next today, add',
+							center : 'title',
+							right : 'month,agendaWeek,agendaDay'
+						},
+						buttonText : {
+							today : 'today',
+							add : 'Add',
+							month : 'month',
+							week : 'week',
+							day : 'day'
+						},
+						editable : true,
+						//Random default events
+						eventSources : [ {
+							url : 'http://localhost:8080/QuanLyLichCaNhan/Calender_Event',
+							type : 'GET',
+							data : {
+								id : 'id',
+								title : 'title',
+								allDay : 'allDay',
+								start : 'start',
+								end : 'end',
+								url : 'url',								
+								backgroundColor: 'backgroundColor',
+								dow:'dow',
+								resourceEditable : true
+								
+							},
+							error : function() {
+								alert('Lỗi không thể load dữ liệu!');
+							}
+						} ],
+						
+						
+						droppable : true, // this allows things to be dropped onto the calendar !!!
+						drop : function(date, allDay) { // this function is called when something is dropped
 
-          url: 'detail-event.jsp'
-        },
-        {
-          title: 'Học Anh Văn',
-          start: new Date(y, m, d - 5),
-          end: new Date(y, m, d - 2),
-          backgroundColor: "#f39c12", //yellow
-          borderColor: "#f39c12", //yellow
-          url: 'detail-event.jsp'
-        },
-        {
-          title: 'Học Giao Tiếp',
-          start: new Date(y, m, d, 10, 30),
-          allDay: false,
-          backgroundColor: "#0073b7", //Blue
-          borderColor: "#0073b7",//Blue
-          url: 'detail-event.jsp'
-        },
-        {
-          title: 'Tham gia hội thảo',
-          start: new Date(y, m, d, 15, 0),
-          end: new Date(y, m, d, 18, 0),
-          allDay: false,
-          backgroundColor: "#00c0ef", //Info (aqua)
-          borderColor: "#00c0ef", //Info (aqua)
-          url: 'detail-event.jsp'
-        },
-        {
-          title: 'Sinh Nhật',
-          start: new Date(y, m, d + 1, 19, 0),
-          end: new Date(y, m, d + 1, 22, 0),
-          allDay: false,
-          backgroundColor: "#00a65a", //Success (green)
-          borderColor: "#00a65a", //Success (green)
-          url: 'detail-event.jsp'
-        },
-        {
-          title: 'Học Anh Văn',
-          start: new Date(y, m, 28),
-          end: new Date(y, m, 29),
-          url: 'detail-event.jsp',
-          backgroundColor: "#3c8dbc", //Primary (light-blue)
-          borderColor: "#3c8dbc" //Primary (light-blue)
-        }
-      ],
-      editable: true,
-      droppable: true, // this allows things to be dropped onto the calendar !!!
-      drop: function (date, allDay) { // this function is called when something is dropped
+							// retrieve the dropped element's stored Event Object
+							var originalEventObject = $(this).data(
+									'eventObject');
 
-        // retrieve the dropped element's stored Event Object
-        var originalEventObject = $(this).data('eventObject');
+							// we need to copy it, so that multiple events don't have a reference to the same object
+							var copiedEventObject = $.extend({},
+									originalEventObject);
 
-        // we need to copy it, so that multiple events don't have a reference to the same object
-        var copiedEventObject = $.extend({}, originalEventObject);
+							// assign it the date that was reported
+							copiedEventObject.start = date;
+							copiedEventObject.allDay = allDay;
+							copiedEventObject.backgroundColor = $(this).css(
+									"background-color");
+							copiedEventObject.borderColor = $(this).css(
+									"border-color");
 
-        // assign it the date that was reported
-        copiedEventObject.start = date;
-        copiedEventObject.allDay = allDay;
-        copiedEventObject.backgroundColor = $(this).css("background-color");
-        copiedEventObject.borderColor = $(this).css("border-color");
+							// render the event on the calendar
+							// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+							$('#calendar').fullCalendar('renderEvent',
+									copiedEventObject, true);
 
-        // render the event on the calendar
-        // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-        $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+							// is the "remove after drop" checkbox checked?
+							if ($('#drop-remove').is(':checked')) {
+								// if so, remove the element from the "Draggable Events" list
+								$(this).remove();
+							}
+						},
+						eventDrop: function (event, dayDelta, minuteDelta, allDay, revertFunc) {
+						    if (confirm("Bạn có muốn chuyển???")) {
+						        UpdateEvent(event.id, event.start, event.end);
+						        function UpdateEvent(EventID, EventStart, EventEnd) {
+						    	    var dataRow = {
+						    	        'id': EventID,
+						    	        'start': EventStart,
+						    	        'end': EventEnd
+						    	    }
+						    	    
+						    	    $.ajax({
+						    	        type: 'POST',
+						    	        url: "http://localhost:8080/QuanLyLichCaNhan/Calender_Event",
+						    	        dataType: "json",
+						    	        contentType: "application/json",
+						    	        data: JSON.stringify(dataRow)
+						    	    }); 
+						    	}
+						    }
+						    else {
+						        revertFunc();
+						    }  
+						} ,
+						eventResize: function(event, delta, revertFunc, jsEvent, ui, view) {
 
-        // is the "remove after drop" checkbox checked?
-        if ($('#drop-remove').is(':checked')) {
-          // if so, remove the element from the "Draggable Events" list
-          $(this).remove();
-        }
+					        alert("Bạn thay đổi sự kiện "+event.title + " với thời gian kết thúc " + event.end.format()+" ?");
+					        UpdateEvent(event.id, event.start, event.end);
+					        function UpdateEvent(EventID, EventStart, EventEnd) {
+					    	    var dataRow = {
+					    	        'id': EventID,
+					    	        'start': EventStart,
+					    	        'end': EventEnd
+					    	    }
+					    	    
+					    	    $.ajax({
+					    	        type: 'POST',
+					    	        url: "http://localhost:8080/QuanLyLichCaNhan/Calender_Event",
+					    	        dataType: "json",
+					    	        contentType: "application/json",
+					    	        data: JSON.stringify(dataRow)
+					    	    }); 
+					    	}
+				        	
+					        if (!confirm("Đã thay đổi thành công!!!")) {
+					        					        	
+					            revertFunc();
+					        }
 
-      }
-    });
+					    }											
 
-    /* ADDING EVENTS */
-    var currColor = "#3c8dbc"; //Red by default
-    //Color chooser button
-    var colorChooser = $("#color-chooser-btn");
-    $("#color-chooser > li > a").click(function (e) {
-      e.preventDefault();
-      //Save color
-      currColor = $(this).css("color");
-      //Add color effect to button
-      $('#add-new-event').css({"background-color": currColor, "border-color": currColor});
-    });
-    $("#add-new-event").click(function (e) {
-      e.preventDefault();
-      //Get value and make sure it is not null
-      var val = $("#new-event").val();
-      if (val.length == 0) {
-        return;
-      }
+					});
 
-      //Create events
-      var event = $("<div />");
-      event.css({"background-color": currColor, "border-color": currColor, "color": "#fff"}).addClass("external-event");
-      event.html(val);
-      $('#external-events').prepend(event);
+	/* ADDING EVENTS */
+	var currColor = "#3c8dbc"; //Red by default
+	//Color chooser button
+	var colorChooser = $("#color-chooser-btn");
+	$("#color-chooser > li > a").click(function(e) {
+		e.preventDefault();
+		//Save color
+		currColor = $(this).css("color");
+		//Add color effect to button
+		$('#add-new-event').css({
+			"background-color" : currColor,
+			"border-color" : currColor
+		});
+	});
+	$("#add-new-event").click(function(e) {
+		e.preventDefault();
+		//Get value and make sure it is not null
+		var val = $("#new-event").val();
+		if (val.length == 0) {
+			return;
+		}
 
-      //Add draggable funtionality
-      ini_events(event);
+		//Create events
+		var event = $("<div />");
+		event.css({
+			"background-color" : currColor,
+			"border-color" : currColor,
+			"color" : "#fff"
+		}).addClass("external-event");
+		event.html(val);
+		$('#external-events').prepend(event);
 
-      //Remove event from text input
-      $("#new-event").val("");
-    });
-  });
+		//Add draggable funtionality
+		ini_events(event);
+
+		//Remove event from text input
+		$("#new-event").val("");
+
+	});
+});

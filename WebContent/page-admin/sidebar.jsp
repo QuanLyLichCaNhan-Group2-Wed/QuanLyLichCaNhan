@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ page language="java" import="connect.*,java.util.*" session="true"%>
+<%@ page import="java.sql.*"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,10 +15,25 @@
 		      <!-- Sidebar user panel -->
 		      <div class="user-panel">
 		         <div class="pull-left image">
-		            <img src="dist/img/male-member.png" class="img-circle" alt="User Image">
+		         <%
+							Connect conn = new Connect();
+								String username = session.getAttribute("username").toString();
+								ResultSet rs = null;
+								String sql = "select * from account where username = '" + username + "'";
+								try {
+									rs = conn.GetData(sql);
+									if(rs.next()){
+									
+						%>
+		            <img src="<%=rs.getString("avatar") %>" class="img-circle" alt="User Image">
+		            <%}
+								} catch (Exception e) {
+
+									}
+							%>
 		         </div>
 		         <div class="pull-left info">
-		            <p>Trần Quốc Thiện</p>
+		            <p><%=session.getAttribute("fullname") %></p>
 		            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 		         </div>
 		      </div>
