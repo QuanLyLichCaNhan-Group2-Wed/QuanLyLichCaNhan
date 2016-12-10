@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page language="java" import="connect.*,java.util.*" session="true"%>
+<%@ page import="java.sql.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,6 +24,10 @@
     <link rel="stylesheet" href="dist/css/bootstrap-imageupload.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+	<% if(session.getAttribute("username")==null || session.getAttribute("username")=="") {
+		response.sendRedirect("index.jsp");
+	}else{
+	%>
 	<div class="wrapper">
 		<jsp:include page="page-user/header.jsp"></jsp:include>
 		
@@ -35,72 +41,95 @@
                     <li class="active">Bản thân</li>
                 </ol>
             </section>
-
+			<%
+							Connect conn = new Connect();
+								String username = session.getAttribute("username").toString();
+								ResultSet rs = null;
+								String sql = "select * from account where username = '" + username + "'";
+								try {
+									rs = conn.GetData(sql);
+									rs.next();
+							%>
             <!-- Main content -->
-            <section class="content">
-
+            <section class="content" style="margin-top:20px">
                 <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading"><i class="fa fa-user" aria-hidden="true"></i>  Thông tin cá nhân
-                            </div>
-                            <div class="panel-body">
-                                <form action="" method="POST" role="form">
-                                    <div class="form-group">
-                                        <label for="">Tên đăng nhập</label>
-                                        <input type="text" class="form-control" disabled value="TKhoa">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="checkbox" id="changepass" value=""> Đổi mật khẩu
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Mật khẩu hiện tại</label>
-                                        <input type="password" id="CurrentPass" disabled="" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Mật khẩu mới</label>
-                                        <input type="password" id="NewPass" disabled="" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Xác nhận lại mật khẩu</label>
-                                        <input type="password" id="ConfirmPass" disabled="" class="form-control">
-                                    </div>
-                                    <label>Giới tính</label>
-                                    <div class="radio">
-                                        <label class="col-md-4">
-                                            <input type="radio" name="optionsRadios" checked> Nam
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="optionsRadios"> Nữ
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Email</label>
-                                        <input type="text" class="form-control" disabled value="trandangkhoa@gmail.com">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Tên đầy đủ</label>
-                                        <input type="text" class="form-control" id="" value="Trần Đăng Khoa">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Số điện thoại</label>
-                                        <input type="text" class="form-control" id="" value="0962228269">
-                                    </div>
-                                    <div class="imageupload panel panel-primary">
+                	<div class="col-md-4 col-md-offset-1">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								Hình ảnh đại diện
+							</div>
+							<div class="panel-body">
+								<form action="ChangeImage?id=1" method="POST" role="form" enctype="multipart/form-data">
+  									<label>Hình ảnh</label>
+                                    <img src="<%=rs.getString("avatar") %>" class="img-responsive" width="100px" />
+                                    <br>
+  									<div class="imageupload panel panel-primary">
                                         <div class="panel-heading clearfix">
                                             <h3 class="panel-title pull-left">Upload Image</h3>
                                         </div>
                                         <div class="file-tab panel-body">
                                             <label class="btn btn-primary btn-file">
                                                 <span>Browse</span>
-                                                <input type="file" name="image-file">
+                                                <input type="file" name="imagefile">
                                             </label>
                                             <button type="button" class="btn btn-default">Remove</button>
                                         </div>
-                                    </div>
-                                    <a href="myprofile.jsp" type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Lưu lại </a>
+                                    </div>                                  
+                                    
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Lưu lại </button>
                                     <button type="reset" class="btn btn-default">Làm lại</button>
                                 </form>
+							</div>
+						</div>
+					</div>
+                    <div class="col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"><i class="fa fa-user" aria-hidden="true"></i>  Thông tin cá nhân
+                            </div>
+                            
+                            
+                            <div class="panel-body">
+                                <form action="EditProfileServlet?id=<%=rs.getInt("id") %>" method="POST" role="form">
+                                    <div class="form-group">
+                                        <label for="">Tên đăng nhập</label>
+                                        <input type="text" class="form-control" disabled value="<%=rs.getString("username")  %>">
+                                    </div>
+                                    <label>Giới tính</label>
+                                    <div class="radio">
+                                        <label class="col-md-4">
+                                            <input type="radio" name="optionsRadios" value="0"
+                                            <%if(rs.getInt("gender")==0){ %>
+                                            checked
+                                            <%} %>
+                                            > Nam
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="optionsRadios" value="1"
+                                            <%if(rs.getInt("gender")==1){ %>
+                                            	checked
+                                            <%} %>
+                                            > Nữ
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Email</label>
+                                        <input type="text" class="form-control" name="email" value="<%=rs.getString("email")%>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Tên đầy đủ</label>
+                                        <input type="text" class="form-control" name="fullname" value="<%=rs.getString("fullname")%>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Số điện thoại</label>
+                                        <input type="text" class="form-control" name="phone" value="<%=rs.getString("phone")%>">
+                                    </div>
+                                    
+                                    
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Lưu lại </button>
+                                    <button type="reset" class="btn btn-default">Làm lại</button>
+                                </form>
+                               <% 
+			        			}catch(Exception e){ }%> 
                             </div>
                         </div>
 
@@ -111,6 +140,9 @@
 		
 		<jsp:include page="page-user/footer.jsp"></jsp:include>
 	</div>
+	<%
+	} 
+	%>
 	<!-- jQuery 2.2.3 -->
     <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
     <!-- Bootstrap 3.3.6 -->
