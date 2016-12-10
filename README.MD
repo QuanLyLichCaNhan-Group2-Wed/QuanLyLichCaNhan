@@ -1,8 +1,8 @@
-#Trường Đại Học Sư Phạm Kỹ Thuật TP. HCM
+﻿#Trường Đại Học Sư Phạm Kỹ Thuật TP. HCM
 
 #Đề Tài: Quản Lý Lịch Cá Nhân Online.
 
-Nhóm 2:
+Nhóm 2: Lập Trình Web Sáng Thứ 4
  1. Nguyễn Thanh An.	MSSV: 13110001.
  2. Trần Đăng Khoa.		MSSV: 13110081.
  3. Trần Quốc Thiện. 	MSSV: 13110158.
