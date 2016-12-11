@@ -2,6 +2,13 @@
     <wb-module deploy-name="QuanLyLichCaNhan">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/WebContent/WEB-INF/lib"/>
+        <dependent-module archiveName="gson-2.2.4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/tranq/git/QuanLyLichCaNhan/WebContent/WEB-INF/lib/gson-2.2.4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="json-simple-1.1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/tranq/git/QuanLyLichCaNhan/WebContent/WEB-INF/lib/json-simple-1.1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="QuanLyLichCaNhan"/>
         <property name="java-output-path" value="/QuanLyLichCaNhan/build/classes"/>
     </wb-module>

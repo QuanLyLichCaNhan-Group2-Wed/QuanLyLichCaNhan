@@ -44,32 +44,50 @@ public class ChangePasswordServlet extends HttpServlet {
 		String currentPassword = request.getParameter("currentPassword");
 		String confirmPassword = request.getParameter("confirmPassword");
 		String err = "";
-		if(currentPassword != confirmPassword){
-			err="Hai password không khớp nhau";
-		}
-		String password = userDao.getPassword(username);
-		if(newPassword !=password){
-			err="Mật khẩu hiện tại không chính xác";
-		}
-		if(newPassword != confirmPassword){
-			err="Hai mật khẩu không trùng nhau";
+		if(currentPassword.equals("")){
+			err="Bạn chưa nhập password hiện tại";
 		}
 		if(newPassword.equals("")){
 			err="Bạn chưa nhập password mới";
 		}
-		 Connect conn = new Connect();
-			String sql = "Update account set password ='"+newPassword+"' where id='"+ id +"'";
-		
-		String url = "";
-		int kq = 0;
-		try{
+		String password = userDao.getPassword(username);
+		if(!currentPassword.equals(password)){
+			err="Mật khẩu hiện tại không chính xác";
 			
-				kq=conn.Update(sql);
-				url = "myprofile.jsp";
-			response.sendRedirect(url);
-		}catch (Exception e){
-			e.printStackTrace();
-			response.sendRedirect("change-password.jsp");
 		}
+		if(!newPassword.equals(confirmPassword) ){
+			err="Hai mật khẩu không trùng nhau";
+		}
+		
+		if(err.length() > 0){
+			System.out.print("Password: "+password);
+			System.out.print("Current Password: "+currentPassword);
+			System.out.print("New Password: "+newPassword);
+			System.out.print("Confirm Password: "+confirmPassword);
+			out.println("<meta charset='utf-8'>");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('"+err+"');");
+			out.println("location='change-password.jsp';");
+			out.println("</script>");
+			
+		}
+		else{
+			Connect conn = new Connect();
+			String sql = "Update account set password ='"+newPassword+"' where id='"+ id +"'";
+			
+			String url = "";
+			int kq = 0;
+			try{
+				
+				
+					kq=conn.Update(sql);
+					url = "myprofile.jsp";
+				response.sendRedirect(url);
+			}catch (Exception e){
+				e.printStackTrace();
+				response.sendRedirect("change-password.jsp");
+			}
+		}
+		
 	}
 }

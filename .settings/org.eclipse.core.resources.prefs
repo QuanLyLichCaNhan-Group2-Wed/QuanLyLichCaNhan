@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//WebContent/README.MD=UTF-8
+encoding//src/controller/AddEventServlet.java=UTF-8
+encoding//src/controller/AddUserServlet.java=UTF-8
+encoding//src/controller/ChangePasswordServlet.java=UTF-8
+encoding//src/controller/EditEventServlet.java=UTF-8
+encoding//src/controller/EditListServlet.java=UTF-8
+encoding//src/controller/LoginServlet.java=UTF-8
+encoding//src/controller/RegisterServlet.java=UTF-8
+encoding//src/controller/SearchEventServlet.java=UTF-8
+encoding/README.MD=UTF-8
