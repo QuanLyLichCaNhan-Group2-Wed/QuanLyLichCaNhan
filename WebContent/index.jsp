@@ -82,7 +82,6 @@
 							<br>
 							<br>		
 										
-<<<<<<< HEAD
 							 <div id="error" style="color:red"><%
 							    if(request.getAttribute("error")!=null)
 							    {
@@ -93,10 +92,6 @@
 							    	<%
 							    }
 							%>	</div>
-=======
-							 <div id="error" style="color:red">
-							   	</div>
->>>>>>> origin/master
 						</form>
 					</div>
 				</div>

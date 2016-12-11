@@ -46,7 +46,6 @@
 							class="hidden-sm hidden-xs">Thêm mới</span></a>
 							
 					</div>
-<<<<<<< HEAD
 					<form action="SearchEventServlet" method="POST">
 					<div class="col-md-10 col-sm-10 col-xs-10">
 						<input type="text" class="form-control"
@@ -91,12 +90,6 @@
 		                 </div>
 					</div>
 					</form>
-=======
-					<div class="col-md-2 col-sm-2 col-xs-2" id="add-event">
-						<a href="page-search.jsp" class="btn btn-primary">Tìm kiếm <i class="glyphicon glyphicon-arrow-right"></i></a>
-							
-					</div>
->>>>>>> origin/master
 					
 				</div>
 				

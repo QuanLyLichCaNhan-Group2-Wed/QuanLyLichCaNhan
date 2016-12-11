@@ -17,10 +17,7 @@
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<<<<<<< HEAD
 	<link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
-=======
->>>>>>> origin/master
 <!-- fullCalendar 2.2.5-->
 <link rel="stylesheet" href="plugins/fullcalendar/fullcalendar.min.css">
 <link rel="stylesheet"
@@ -56,11 +53,7 @@
 					<form action="SearchEventServlet" method="POST">
 					<div class="col-md-10 col-sm-10 col-xs-10">
 						<input type="text" class="form-control"
-<<<<<<< HEAD
 							placeholder="Nhập tên sự kiện cần tìm ..." name="searchEvent"><br />
-=======
-							placeholder="Nhập tên sự kiện cần tìm ..."><br />
->>>>>>> origin/master
 					</div>
 					<br>
 					<div class="form-group">
@@ -112,18 +105,11 @@
 					<div class="box box-primary">
 						<div class="box-body no-padding">
 							<!-- THE CALENDAR -->
-<<<<<<< HEAD
 							<div id="search" class="table-responsive">
 								<table  class="table table-striped">
 									<thead>
 										<tr>
 											<th>STT</th>
-=======
-							<div class="table-responsive">
-								<table class="table">
-									<thead>
-										<tr>
->>>>>>> origin/master
 											<th>Tên sự kiện</th>
 											<th>Thời gian bắt đầu</th>
 											<th>Thời gian kết thúc</th>
@@ -132,10 +118,7 @@
 									</thead>
 									<tbody>
 										<%
-<<<<<<< HEAD
 											int count = 0;
-=======
->>>>>>> origin/master
 											if (request.getAttribute("arr_event") != null) {
 							                    ArrayList al = (ArrayList) request.getAttribute("arr_event");
 							                    System.out.println(al);
@@ -143,7 +126,6 @@
 							                    try{
 							                    
 							                    	while (itr.hasNext()) {
-<<<<<<< HEAD
 							                            count++;
 							                        ArrayList item = (ArrayList) itr.next();
 						                 %>
@@ -153,15 +135,6 @@
 											<td><%=item.get(1) %></td>
 											<td><%=item.get(2) %></td>
 											<td><a href="detail-event.jsp?id=<%=item.get(3) %>"><i class="glyphicon glyphicon-calendar"></i> Chi tiết</a></td>
-=======
-							                        ArrayList pList = (ArrayList) itr.next();
-						                 %>
-										<tr>
-											<td><%=pList.get(0) %></td>
-											<td><%=pList.get(1) %></td>
-											<td><%=pList.get(2) %></td>
-											<td><a href="detail-event?id=<%=pList.get(3) %>">Chi tiết</a></td>
->>>>>>> origin/master
 										</tr>
 										<%}
 						                    
@@ -170,15 +143,12 @@
 						                    }
 											}
 							            %>
-<<<<<<< HEAD
 							            <%if(count == 0){ %>
 							            	<tr>
 							            		<td colspan="4"><div class="alert alert-default text-center" role="alert">Chưa có nội dung tìm kiếm</div></td>
 							            	</tr>
 							            	
 							            <%} %>
-=======
->>>>>>> origin/master
 									</tbody>
 								</table>
 							</div>
@@ -201,13 +171,6 @@
 	<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
 	<!-- Bootstrap 3.3.6 -->
 	<script src="bootstrap/js/bootstrap.min.js"></script>
-<<<<<<< HEAD
-=======
-	<!-- jQuery UI 1.11.4 -->
-	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-	<script src="dist/js/select2.min.js"></script>
-	<script src="dist/js/select2/full.min.js"></script>
->>>>>>> origin/master
 	<!-- AdminLTE App -->
 	<script src="dist/js/app.min.js"></script>
 	<!-- AdminLTE for demo purposes -->
@@ -221,7 +184,6 @@
 	<script src="dist/js/my.js" charset="UTF-8"></script>
 	<!-- Page specific script -->
 	<script type="text/javascript" src="dist/js/datetime.js"></script>
-<<<<<<< HEAD
 	<script src="plugins/datatables/jquery.dataTables.min.js"></script>
 	<script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
 	<script type="text/javascript">
@@ -233,12 +195,5 @@
 	<script type="text/javascript" src="dist/js/app/app.js"></script>
 	<script type="text/javascript" src="dist/js/angular.min.js"></script>
 	
-=======
-	<script type="text/javascript" src="dist/js/app/app.js"></script>
-	<script type="text/javascript" src="dist/js/angular.min.js"></script>
-	<script type="text/javascript">
-  	$("#addfriend").select2();  
-  </script>
->>>>>>> origin/master
 </body>
 </html>

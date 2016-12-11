@@ -1,10 +1,7 @@
 package controller;
 
 import java.io.IOException;
-<<<<<<< HEAD
 import java.io.PrintWriter;
-=======
->>>>>>> origin/master
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -38,15 +35,11 @@ public class SearchEventServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-<<<<<<< HEAD
 	@SuppressWarnings("unchecked")
-=======
->>>>>>> origin/master
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-<<<<<<< HEAD
 		PrintWriter out = response.getWriter();
 		String contentsearch = request.getParameter("searchEvent");
 		String start = request.getParameter("time_start");
@@ -82,19 +75,6 @@ public class SearchEventServlet extends HttpServlet {
             ArrayList arr_event = new ArrayList();
             System.out.println("query " + query);
             ResultSet rs = conn.GetData(query);
-=======
-		String contentsearch = request.getParameter("searchEvent");
-		Connection conn = Connect.getConnection();
-		String query = "select * from event where title = '%"+contentsearch+"%'";
-		
-		Statement st;
-        try {
-            ArrayList al = null;
-            ArrayList arr_event = new ArrayList();
-            st = conn.createStatement();
-            System.out.println("query " + query);
-            ResultSet rs = st.executeQuery(query);
->>>>>>> origin/master
  
             while (rs.next()) {
                 al = new ArrayList();
@@ -107,11 +87,7 @@ public class SearchEventServlet extends HttpServlet {
             }
  
             request.setAttribute("arr_event", arr_event);
-<<<<<<< HEAD
             RequestDispatcher view = request.getRequestDispatcher("page-search.jsp");
-=======
-            RequestDispatcher view = request.getRequestDispatcher("search-page.jsp");
->>>>>>> origin/master
             view.forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();

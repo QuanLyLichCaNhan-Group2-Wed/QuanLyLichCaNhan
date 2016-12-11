@@ -13,11 +13,7 @@ public class Connect {
 		Connection cons=null;
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-<<<<<<< HEAD
 			cons=DriverManager.getConnection( "jdbc:mysql://localhost:3307/calendar?verifyServerCertificate=false&useSSL=true","root","thien2009");
-=======
-			cons=DriverManager.getConnection( "jdbc:mysql://localhost:3306/calendar?verifyServerCertificate=false&useSSL=true","root","20011405");
->>>>>>> origin/master
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -56,11 +52,7 @@ public class Connect {
 	private void openconnect() throws SQLException {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-<<<<<<< HEAD
 			conn=DriverManager.getConnection( "jdbc:mysql://localhost:3307/calendar?verifyServerCertificate=false&useSSL=true","root","thien2009");
-=======
-			conn=DriverManager.getConnection( "jdbc:mysql://localhost:3306/calendar?verifyServerCertificate=false&useSSL=true","root","20011405");
->>>>>>> origin/master
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e);
