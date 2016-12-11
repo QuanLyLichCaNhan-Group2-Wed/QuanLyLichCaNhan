@@ -82,12 +82,20 @@ public class LoginServlet extends HttpServlet {
 				
 				if (userDao.CheckUser(user,pass))
 				{
+<<<<<<< HEAD
 					url = "/admin-list.jsp";
+=======
+					url = "admin-list.jsp";
+>>>>>>> origin/master
 				}
 					
 				else
 				{
+<<<<<<< HEAD
 					url = "/home.jsp";
+=======
+					url = "home.jsp";
+>>>>>>> origin/master
 				}
 					
 			} else {

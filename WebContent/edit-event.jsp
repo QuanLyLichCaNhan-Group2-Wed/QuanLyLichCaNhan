@@ -21,7 +21,10 @@
 <link href="dist/css/bootstrap-datetimepicker.min.css" rel="stylesheet"
 	media="screen">
 <link rel="stylesheet" type="text/css" href="dist/css/mycss.css">
+<<<<<<< HEAD
 <link rel="stylesheet" type="text/css" href="dist/css/select2.min.css">
+=======
+>>>>>>> origin/master
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<% if(session.getAttribute("username")==null || session.getAttribute("username")=="") {
@@ -283,11 +286,15 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
 	<script src="plugins/fullcalendar/fullcalendar.min.js"></script>
 	<script src="dist/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<<<<<<< HEAD
 	<script src="dist/js/select2.min.js"></script>
   	<script src="dist/js/select2/full.min.js"></script>
   	<script type="text/javascript">
 	  	$("#addfriend").select2();  
 	  </script>
+=======
+
+>>>>>>> origin/master
 	<script src="dist/js/my.js"></script>
 	<!-- Page specific script -->
 	<script type="text/javascript" src="dist/js/datetime.js"></script>
